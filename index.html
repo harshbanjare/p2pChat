@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>p2pChat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-signup ">
+        <div class="login-form">
+            <h1>p2p<span>CHAT</span></h1>
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <button type="submit" value="Log In">Log In</button> <br>
+                <a class="login-signup-toggle" href="#">Create Account.</a>
+            </form>
+        </div>
+        <div class="signup-form hide">
+            <h1>p2p<span>CHAT</span></h1>
+            <h2>Sign Up</h2>
+            <form action="/signup" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <button type="submit" value="Sign Up">Sign Up</button>
+                <br>
+                <a class="login-signup-toggle" href="#">Already have an account?</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="app hide">
+        <h1>Currently Active Peers</h1>
+        <div class="user-list">
+            <div class="user-card">
+                <div class="user-card__avatar">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="">
+                </div>
+                <div class="user-card__name">
+                    <h3>Jane Doe</h3>
+                    <p>status: <span>online</span></p>
+                    <button>Connect And Chat</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-window-backdrop hide">
+
+            <div class="message-window">
+                <div class="topbar">
+                    <div class="topbar__avatar">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="">
+                    </div>
+                    <div class="topbar__name">
+                        <h3>Jane Doe</h3>
+                        <p>status: <span>online</span></p>
+                    </div>
+                    <div class="topbar__close">
+                        <button onclick="close_message_window()">&times;</button>
+                    </div>
+
+                </div>
+                <div class="message-body">
+                    <div class="message-recieved">
+                        <div class="message-recieved__avatar">
+                            <img src="https://i.pravatar.cc/150?img=1" alt="">
+                        </div>
+                        <div class="message-recieved__text">
+                            <p>Hey, how are you?</p>
+                        </div>
+                    </div>
+
+                    <div class="message-sent">
+                        <div class="message-sent__text">
+                            <p>Hey, I'm fine.</p>
+                        </div>
+                        <div class="message-sent__avatar">
+                            <img src="https://i.pravatar.cc/150?img=1" alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="bottombar">
+                    <form action="">
+                        <input type="text" class="bottombar__input" placeholder="Type a message...">
+                        <button class="bottombar__send">Send</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</body>
+
+<script src=" main.js" defer>
+</script>
+
+</html>
