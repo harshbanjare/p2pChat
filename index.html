@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <title>p2pChat</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+
 </head>
 
 <body>
-    <div class="login-signup ">
+    <div class="login-signup">
         <div class="login-form">
             <h1>p2p<span>CHAT</span></h1>
             <h2>Login</h2>
@@ -37,6 +39,8 @@
     <div class="app hide">
         <h1>Currently Active Peers</h1>
         <div class="user-list">
+
+
             <div class="user-card">
                 <div class="user-card__avatar">
                     <img src="https://i.pravatar.cc/150?img=1" alt="">
@@ -46,11 +50,16 @@
                     <p>status: <span>online</span></p>
                     <button>Connect And Chat</button>
                 </div>
+
+
+
             </div>
+
+
+
         </div>
 
-        <div class="message-window-backdrop hide">
-
+        <div class="message-window-backdrop" style="display: none;">
             <div class="message-window">
                 <div class="topbar">
                     <div class="topbar__avatar">
@@ -61,7 +70,7 @@
                         <p>status: <span>online</span></p>
                     </div>
                     <div class="topbar__close">
-                        <button onclick="close_message_window()">&times;</button>
+                        <button>&times;</button>
                     </div>
 
                 </div>
@@ -100,7 +109,7 @@
 
 </body>
 
-<script src=" main.js" defer>
+<script src=" main.js" type="module" defer>
 </script>
 
 </html>
