@@ -2,37 +2,7 @@ import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
 const loginForm = document.querySelector('.login-form');
 const signupForm = document.querySelector('.signup-form');
 let my_id = null;
-let chat_rooms = [
-    {
-        peer: 'estrids',
-
-        chat: [
-            {
-                type: 'sent',
-                message: 'Hello World'
-            },
-            {
-                type: 'received',
-                message: 'Hello '
-            }
-
-        ]
-    },
-    {
-        peer: 'es',
-        chat: [
-            {
-                type: 'received',
-                message: 'Hello me'
-            },
-            {
-                type: 'received',
-                message: 'sup'
-            }
-
-        ]
-    }
-];
+let chat_rooms = [];
 
 const show_chat = function (me, peer) {
     const chatroom_element = document.getElementsByClassName('message-window')[0];
@@ -81,7 +51,7 @@ const show_chat = function (me, peer) {
         });
     }
 
-    const chatrefresh = setInterval(render_chats, 100);
+    const chatrefresh = setInterval(render_chats, 50);
 
     //set topbar__avatar 
     chatroom_element.getElementsByClassName('topbar__avatar')[0].getElementsByTagName('img')[0].src = peer.pfp;
@@ -168,7 +138,6 @@ const render_active_peers = function (me, peers) {
         user_card_name_button.innerText = 'Connect And Chat';
         user_card_name_button.addEventListener('click', event => {
             show_chat(me, peer);
-            // connect_to_peer(me, peer.connection_id);
         });
 
         user_card_name.appendChild(user_card_name_h3);
@@ -193,7 +162,6 @@ const initialize_app = async function () {
     }
     document.getElementsByClassName('login-signup')[0].style.display = 'none';
     document.getElementsByClassName("app")[0].classList.toggle('hide');
-
 
     const me = new Peer();
 
@@ -225,12 +193,16 @@ const initialize_app = async function () {
     });
 
     const peer_sync = async function () {
-        const active_peers = await get_active_peers();
-        render_active_peers(me, active_peers);
+        try {
+            const active_peers = await get_active_peers();
+            render_active_peers(me, active_peers);
+        } catch (err) {
+            console.log(err);
+            return;
+        }
+        setTimeout(peer_sync, 1500);
     }
-
-    const peer_sync_interval = setInterval(peer_sync, 1500);
-
+    peer_sync();
 
 }
 
@@ -404,7 +376,6 @@ const send_message_to_peer = function (me, peer_id, message) {
     conn.on('open', () => {
         conn.send(data);
     });
-
 }
 
 
